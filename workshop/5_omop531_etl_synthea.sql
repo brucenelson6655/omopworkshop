@@ -17,7 +17,8 @@ USE OMOP531;
 
 -- COMMAND ----------
 
-print('Reading synthea delta tables from {}bronze'.format(delta_root_path))
+-- MAGIC %py
+-- MAGIC print('Reading synthea delta tables from {}bronze'.format(delta_root_path))
 
 -- COMMAND ----------
 
