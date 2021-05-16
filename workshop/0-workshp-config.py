@@ -14,17 +14,14 @@ import os
 
 # COMMAND ----------
 
-# DBTITLE 0,set up default paths
-delta_root_path='/dbfs/mnt/gwas-test/omop/delta/synthea/'
-databasePath=delta_root_path+'/silver/OMOP531'
-vocabPath='/dbfs/mnt/gwas-test/omopvocab/'
-synthea_path='/dbfs/mnt/gwas-test/synthea/100K'
+# MAGIC %run ./params
 
 # COMMAND ----------
 
-os.environ["delta_root_path"]=delta_root_path
-os.environ["databasePath"]=databasePath
-os.environ["vocabPath"]=vocabPath
+os.environ["delta_root_path"]=f"/dbfs{delta_root_path}"
+os.environ["databasePath"]=f"/dbfs{databasePath}"
+os.environ["vocabPath"]=f"/dbfs{vocabPath}"
+os.environ["utilityPath"]=f"/dbfs{utility_path}"
 
 # COMMAND ----------
 
@@ -48,6 +45,11 @@ os.environ["vocabPath"]=vocabPath
 # MAGIC %sh
 # MAGIC cd $vocabPath
 # MAGIC wget https://amir-hls.s3.us-east-2.amazonaws.com/public/omop/OMOP-VOCAB.tar.gz
+
+# COMMAND ----------
+
+# MAGIC %sh 
+# MAGIC echo $vocabPath
 
 # COMMAND ----------
 

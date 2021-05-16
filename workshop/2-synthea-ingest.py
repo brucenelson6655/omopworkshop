@@ -25,10 +25,7 @@ from pyspark.sql import Window
 
 # COMMAND ----------
 
-## we've switched to using spark paths .. so we remove the /dbfs the dbfs: is inferred
-delta_root_path='/mnt/gwas-test/omop/delta/synthea/'
-databasePath=delta_root_path+'/silver/OMOP531'
-synthea_path='/mnt/gwas-test/synthea/100K'
+# MAGIC %run ./params
 
 # COMMAND ----------
 
