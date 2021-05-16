@@ -42,10 +42,7 @@ num_days_future=int(dbutils.widgets.get('num_days_future'))
 
 # COMMAND ----------
 
-delta_root_path='/mnt/gwas-test/omop/delta/synthea/'
-databasePath=delta_root_path+'/silver/OMOP531'
-vocabPath='/mnt/gwas-test/omopvocab/'
-synthea_path='/mnt/gwas-test/synthea/100K'
+# MAGIC %run ./params
 
 # COMMAND ----------
 

@@ -14,6 +14,17 @@
 
 # COMMAND ----------
 
+# MAGIC %run ./params
+
+# COMMAND ----------
+
+os.environ["delta_root_path"]=f"/dbfs{delta_root_path}"
+os.environ["databasePath"]=f"/dbfs{databasePath}"
+os.environ["vocabPath"]=f"/dbfs{vocabPath}"
+os.environ["utilityPath"]=f"/dbfs{utility_path}"
+
+# COMMAND ----------
+
 # MAGIC %sh
 # MAGIC git clone https://github.com/synthetichealth/synthea.git
 # MAGIC cd ./synthea
@@ -22,12 +33,12 @@
 # COMMAND ----------
 
 # MAGIC %sh
-# MAGIC wget https://fieldengwebstore.z5.web.core.windows.net/bruce.nelson/data/demographics.csv -P /dbfs/mnt/gwas-test/synthea
+# MAGIC wget https://fieldengwebstore.z5.web.core.windows.net/bruce.nelson/data/demographics.csv -P $utilityPath
 
 # COMMAND ----------
 
 import pandas as pd
-df=pd.read_csv("/dbfs/mnt/gwas-test/synthea/demographics.csv")[['STNAME','TOT_POP']].groupby('STNAME').sum()
+df=pd.read_csv(f"/dbfs{utility_path}/demographics.csv")[['STNAME','TOT_POP']].groupby('STNAME').sum()
 df['STATE']=df.index
 
 # COMMAND ----------
@@ -36,12 +47,8 @@ import subprocess
 from subprocess import PIPE
 import os
 
-# fixed at 2000 / state 
-pop_size = 2000 
-# which should give a total of 100k 
-
 def run_synthea(state,pop_size):
-  synth_out='/dbfs/mnt/gwas-test/synthea/100K'
+  synth_out=f'/dbfs{synthea_path}'
   run_params={"-p": str(pop_size),
    "--exporter.fhir.export":"false",
    "--exporter.csv.export": "true",
@@ -79,8 +86,8 @@ for i in states_list :
   countt, state = i
   print(state)
   pop_count = int(countt / scale)
-  if pop_count > 2000 : 
-    pop_count = 2000
+  if pop_count > 1000 : 
+    pop_count = 1000
     
   print(pop_count)
   run_synthea(state,pop_count)

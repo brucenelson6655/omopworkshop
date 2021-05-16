@@ -14,10 +14,7 @@
 
 -- COMMAND ----------
 
--- MAGIC %py
--- MAGIC delta_root_path='/mnt/gwas-test/omop/delta/synthea/'
--- MAGIC databasePath=delta_root_path+'/silver/OMOP531'
--- MAGIC vocabPath='/mnt/gwas-test/omopvocab/'
+-- MAGIC %run ./params
 
 -- COMMAND ----------
 

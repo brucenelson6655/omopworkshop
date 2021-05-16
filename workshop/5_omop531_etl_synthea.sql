@@ -13,12 +13,11 @@ USE OMOP531;
 
 -- COMMAND ----------
 
--- MAGIC %py
--- MAGIC delta_root_path='/mnt/gwas-test/omop/delta/synthea/'
--- MAGIC databasePath=delta_root_path+'/silver/OMOP531'
--- MAGIC vocabPath='/mnt/gwas-test/omopvocab/'
--- MAGIC synthea_path='/mnt/gwas-test/synthea/100K'
--- MAGIC print('Reading synthea delta tables from {}bronze'.format(delta_root_path))
+-- MAGIC %run ./params
+
+-- COMMAND ----------
+
+print('Reading synthea delta tables from {}bronze'.format(delta_root_path))
 
 -- COMMAND ----------
 

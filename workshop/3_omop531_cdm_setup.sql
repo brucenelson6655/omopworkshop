@@ -17,13 +17,21 @@
 
 -- COMMAND ----------
 
+-- MAGIC %run ./params
+
+-- COMMAND ----------
+
 -- DBTITLE 0,Drop Existing Database
 DROP DATABASE IF EXISTS OMOP531 CASCADE;
 
 -- COMMAND ----------
 
 -- DBTITLE 0,Create OMOP 5.3.1 Lakehouse Database
-CREATE DATABASE IF NOT EXISTS OMOP531 LOCATION 'dbfs:/mnt/gwas-test/omop/delta/synthea/silver/OMOP531'
+-- MAGIC %py 
+-- MAGIC from pyspark.sql import SQLContext
+-- MAGIC query = f"CREATE DATABASE IF NOT EXISTS OMOP531 LOCATION '{databasePath}'"
+-- MAGIC print(query)
+-- MAGIC sqlContext.sql(query)
 
 -- COMMAND ----------
 
